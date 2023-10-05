@@ -33,10 +33,14 @@ def create_contact(request):
     form = ContactForm(request.POST)
     if form.is_valid():
         form.save()
-        return render(
-            request, "demoapp/contact_list.html", {"object_list": Contact.objects.all()}
-        )
+        return render(request, "demoapp/contact_list.html", {"object_list": Contact.objects.all()})
     raise HttpResponseBadRequest
+
+
+def delete_contact(request, pk):
+    # remove the contact from list.
+    Contact.objects.filter(pk=pk).delete()
+    return render(request, "demoapp/contact_list.html", {"object_list": Contact.objects.all()})
 
 
 class ContactList(generic.ListView):

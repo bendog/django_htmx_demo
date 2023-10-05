@@ -4,6 +4,12 @@
 {% for contact in object_list %}
     <li class="list-group-item d-flex justify-content-between align-items-center">
         {{ contact.name }}: {{ contact.phone_number }}
+        <span class="badge badge-danger badge-pill" 
+            style="cursor: pointer;"
+            hx-delete="{% url 'demoapp:contact-delete' contact.pk %}"
+            hx-target="#contact-list"
+            hx-confirm="Are you sure you wish to delete?"
+        >X</span>
     </li>
 {% endfor %}
 </ul>

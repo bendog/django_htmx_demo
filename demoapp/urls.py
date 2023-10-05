@@ -7,4 +7,5 @@ urlpatterns = [
     path("", views.ContactIndex.as_view(), name="contact-index"),
     path("list/", views.ContactList.as_view(), name="contact-list"),
     path("create/", views.create_contact, name="contact-create"),
+    path("delete/<int:pk>/", views.delete_contact, name="contact-delete"),
 ]
